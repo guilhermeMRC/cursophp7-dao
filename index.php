@@ -21,7 +21,17 @@
 	//echo $usuario;
 
 	//Inserido Registro no Banco de dados
-	$aluno = new Usuario("aluno2", "@A560");
-	$aluno->insert();
-	echo $aluno;
+	//$aluno = new Usuario("aluno2", "@A560");
+	//$aluno->insert();
+	//echo $aluno;
+
+	//Atualizando um registro no banco
+
+	$usuario = new Usuario();
+
+	$usuario->loadById(2);
+
+	$usuario->update("professor", "aras15!");
+
+	echo $usuario;
  ?>
