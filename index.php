@@ -26,12 +26,19 @@
 	//echo $aluno;
 
 	//Atualizando um registro no banco
+	//$usuario = new Usuario();
+	//$usuario->loadById(2);
+	//$usuario->update("professor", "aras15!");
+	//echo $usuario;
+
+	//Deletando um registro
 
 	$usuario = new Usuario();
 
-	$usuario->loadById(2);
+	$usuario->loadById(3);
 
-	$usuario->update("professor", "aras15!");
+	$usuario->delete();
 
 	echo $usuario;
+
  ?>
