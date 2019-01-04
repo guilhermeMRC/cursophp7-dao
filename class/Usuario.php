@@ -47,6 +47,7 @@ class Usuario {
 		$this->dtcadastro = $value;
 	}
 
+	//Método traz o registro pelo id 
 	public function loadById($id){
 
 		$sql = new Sql();
@@ -62,6 +63,51 @@ class Usuario {
 			$this->setDessenha($row['dessenha']);
 			$this->setDtcadastro(new DateTime($row['dtcadastro']));
 
+		}
+	}
+
+	//Traz todos os registro do banco de daddos
+	public static function getList(){
+
+		$sql = new Sql();
+
+		return $sql->select("SELECT * FROM tb_usuario ORDER BY deslogin;");
+	}
+
+	//método que faz um busca pelo login
+	public static function search($login){
+
+		 $sql = new Sql();
+
+		 return $sql->select("SELECT * FROM tb_usuario WHERE deslogin LIKE :SEARCH ORDER BY deslogin", array(
+		 	':SEARCH'=>"%".$login."%"
+		 ));
+
+	}
+
+	//fazer uma busca de login tipo um gerenciamento e login e senha
+	public function login($login, $password) {
+
+		$sql = new Sql();
+
+		$results = $sql->select("SELECT * FROM tb_usuario WHERE deslogin = :LOGIN AND dessenha = :PASSWORD", array(
+			":LOGIN"=>$login,
+			":PASSWORD"=>$password 
+		));
+
+		if (count($results) > 0){
+
+			$row = $results[0];
+
+			$this->setIdusuario($row['idusuario']);
+			$this->setDeslogin($row['deslogin']);
+			$this->setDessenha($row['dessenha']);
+			$this->setDtcadastro(new DateTime($row['dtcadastro']));
+
+		}else {
+
+			throw new Exception("Login e/ou senha inválidos.");
+			
 		}
 	}
 

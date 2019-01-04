@@ -2,6 +2,8 @@
 
 class Sql extends PDO {
 
+	//classe que gerencia e faz toda a conexão com o banco de dados
+
 	private $conn;
 
 	public function __construct(){
